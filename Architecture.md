@@ -1,3 +1,3 @@
 # Architecture
 
-* [[ArchitectureWiki]]
+* [[architecture/Wiki]]
