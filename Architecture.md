@@ -1,3 +1,3 @@
 # Architecture
 
-* [wiki](architecture/wiki)
+* [wiki](architecture/wiki.md)
