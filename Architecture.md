@@ -1,1 +1,3 @@
 # Architecture
+
+* [wiki](architecture/wiki)
