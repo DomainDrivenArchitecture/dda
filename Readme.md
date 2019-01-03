@@ -15,11 +15,11 @@ Best way for contribution is to fork the DomainDrivenArchitecture repository on 
 
 ## Thanks to Contributers
 Thanks to all contributors. The contributors are:
- * meissa GmbH	
- * M.Jerger
- * M.Mörike
- * M.Caspari
- * T.Scherer
+* meissa GmbH	
+* M.Jerger
+* M.Mörike
+* M.Caspari
+* T.Scherer
 
 # License
 
