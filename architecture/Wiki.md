@@ -2,9 +2,9 @@
 
 ## Draft of idea
 
-![SmeagolDrivenTests](https://github.com/DomainDrivenArchitecture/dda/raw/master/uploads/BrowserDrivenTests.jpg)
+![SmeagolDrivenTests](https://github.com/DomainDrivenArchitecture/dda/raw/master/uploads/SmeagolDrivenTests.jpg)
 
-![BrowserDrivenTests](BrowserDrivenTests.jpg)
+![BrowserDrivenTests](https://github.com/DomainDrivenArchitecture/dda/raw/master/uploads/BrowserDrivenTests.jpg)
 
 
 ## Discussion
