@@ -2,9 +2,9 @@
 
 ## Draft of idea
 
-![SmeagolDrivenTests](../content/uploads/SmeagolDrivenTests.jpg)
+![SmeagolDrivenTests](SmeagolDrivenTests.jpg)
 
-![BrowserDrivenTests](/uploads/BrowserDrivenTests.jpg)
+![BrowserDrivenTests](BrowserDrivenTests.jpg)
 
 
 ## Discussion
