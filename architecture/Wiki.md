@@ -2,7 +2,7 @@
 
 ## Draft of idea
 
-![SmeagolDrivenTests](/content/uploads/SmeagolDrivenTests.jpg)
+![SmeagolDrivenTests](../content/uploads/SmeagolDrivenTests.jpg)
 
 ![BrowserDrivenTests](/uploads/BrowserDrivenTests.jpg)
 
