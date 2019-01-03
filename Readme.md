@@ -1,6 +1,9 @@
 # DomainDrivenArchitecture
 
-The Book DomainDrivenArchitecture will collect architectural concepts with the claim to fit well to the DomainDrivenDesing ideas from Eric Evans (http://www.domaindrivendesign.org/).
+Here we collect requirements, tests and architectural concepts with the claim to fit well to the DomainDrivenDesing ideas from Eric Evans (http://www.domaindrivendesign.org/).
+
+# Structure
+The structure of wiki will follow the ideas dscribed in [How to reference requirements](https://domaindrivenarchitecture.org/posts/2011-10-28-wie-werden-anforderungen-referenziert/).
 
 # Contribute
 If you just searching for something to reuse, feel invited. 
