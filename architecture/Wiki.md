@@ -52,7 +52,7 @@ public class Division {
 } 
 ```
 
-The names from testtable Division, numerator, denomerator quotient? are matching to java code ... or you can write a more explicite adapter by extending a TableFixture class ...
+The names from testtable Division, numerator, denomerator quotient? are matching to java code ... or you can write a more explicite adapter by extending a TableFixture class ... [more details](http://fitnesse.org/FitNesse.UserGuide.TwoMinuteExample)
 
 ### results
 
