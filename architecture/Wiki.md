@@ -7,19 +7,17 @@
 
 A manual test definition
 
-![a manual test](https://github.com/DomainDrivenArchitecture/ddaArchitecture/raw/master/images/30_requirements/FitnesseTestunterstuetzung1.png)
+![Automated test](https://github.com/DomainDrivenArchitecture/dda/raw/master/uploads/FirnesseTest.png)
 
-A autometed test definition
+A automated test definition
 
 ### test execution
 
-![Automated test](https://github.com/DomainDrivenArchitecture/dda/raw/master/uploads/FirnesseTest.png)
-
-Automated test
+To trigger the test you may press a [test button] in your wiki
 
 ![a manual test](https://github.com/DomainDrivenArchitecture/ddaArchitecture/raw/master/images/30_requirements/FitnesseTestunterstuetzung1.png)
 
-A manual test executed
+Manual test may ask some questions.
 
 
 ### controll flow
@@ -28,11 +26,40 @@ A manual test executed
 
 <img src="https://github.com/DomainDrivenArchitecture/dda/raw/master/uploads/BrowserDrivenTests.jpg" width="80%" alt="BrowserDrivenTests">
 
+### test adapter for your system under test
+
+The java code example would be
+
+```
+public class Division {
+  private double numerator, denominator;
+  
+  public void setNumerator(double numerator) {
+    this.numerator = numerator;
+  }
+  
+  public void setDenominator(double denominator) {
+    this.denominator = denominator;
+  }
+  
+  public double quotient() {
+    return numerator/denominator;
+  }
+} 
+```
+
+The names from testtable Division, numerator, denomerator quotient? are matching to java code ... or you can write a more explicite adapter by extending a TableFixture class ...
+
 ### results
+
+![one test result](https://raw.githubusercontent.com/DomainDrivenArchitecture/ddaArchitecture/master/images/30_requirements/FitnesseTestunterstuetzung2.png)
+
+Result of a single test.
+
 
 ![results](https://github.com/DomainDrivenArchitecture/ddaArchitecture/raw/master/images/30_requirements/FitnesseTestunterstuetzung3.png)
 
-Test results over time ...
+Test results of a whole testsuite over time ...
 
 
 ## Discussion
