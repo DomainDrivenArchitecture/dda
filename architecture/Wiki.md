@@ -24,7 +24,11 @@ Manual test may ask some questions.
 
 <img src="https://github.com/DomainDrivenArchitecture/dda/raw/master/uploads/SmeagolDrivenTests.jpg" width="80%" alt="SmeagolDrivenTests">
 
+Variant1: Let the smeagol server drive the test
+
 <img src="https://github.com/DomainDrivenArchitecture/dda/raw/master/uploads/BrowserDrivenTests.jpg" width="80%" alt="BrowserDrivenTests">
+
+Variant2: Let the browser drive the test directly
 
 ### test adapter for your system under test
 
