@@ -7,7 +7,7 @@
 
 A manual test definition
 
-![Automated test](https://github.com/DomainDrivenArchitecture/dda/raw/master/uploads/FirnesseTest.png)
+![Automated test](https://github.com/DomainDrivenArchitecture/dda/raw/master/uploads/FitnesseTest.png)
 
 A automated test definition
 
