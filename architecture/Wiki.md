@@ -4,17 +4,21 @@
 
 ### declare a test (either manual or automated)
 ![a manual test](https://github.com/DomainDrivenArchitecture/ddaArchitecture/raw/master/images/30_requirements/FitnesseAbnahmeTest.png)
+
 A manual test definition
 
-![a manual test](https://github.com/DomainDrivenArchitecture/ddaArchitecture/blob/master/images/30_requirements/FitnesseTestunterstuetzung1.png)
+![a manual test](https://github.com/DomainDrivenArchitecture/ddaArchitecture/raw/master/images/30_requirements/FitnesseTestunterstuetzung1.png)
+
 A autometed test definition
 
 ### test execution
 
 ![Automated test](https://github.com/DomainDrivenArchitecture/dda/raw/master/uploads/FirnesseTest.png)
+
 Automated test
 
-![a manual test](https://github.com/DomainDrivenArchitecture/ddaArchitecture/blob/master/images/30_requirements/FitnesseTestunterstuetzung1.png)
+![a manual test](https://github.com/DomainDrivenArchitecture/ddaArchitecture/raw/master/images/30_requirements/FitnesseTestunterstuetzung1.png)
+
 A manual test executed
 
 
@@ -27,6 +31,7 @@ A manual test executed
 ### results
 
 ![results](https://github.com/DomainDrivenArchitecture/ddaArchitecture/raw/master/images/30_requirements/FitnesseTestunterstuetzung3.png)
+
 Test results over time ...
 
 
