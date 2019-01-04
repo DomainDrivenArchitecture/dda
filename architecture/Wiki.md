@@ -71,12 +71,13 @@ Test results of a whole testsuite over time ...
 * setup / teardown on level of one test
 * setup / teardown on level of a testsuite
 
-### Who will trigger / drive the tests?
+### Who will drive the tests?
 * Frontend / backend?
 * Use Rest to drive the tests ?
 
 ### How will we represent data to the user? How to store data?
 * Should we use the old tabular format from fitnesse? Should we use edn and nested maps?
+  * We've many [unit-test having large maps to compare](https://github.com/DomainDrivenArchitecture/dda-git-crate/blob/master/test/src/dda/pallet/dda_git_crate/domain_test.clj)
 * Wich nice data frontends are available (treeview / clojure.inspect* ...)
 * Should we add markdown WISYWIG also?
 
@@ -84,11 +85,12 @@ Test results of a whole testsuite over time ...
 * storing testresults versioned would be cool :-)
 
 ### Should we support tests for more than one project?
-* Maybe support one test-vm per project in order to keep classpath deps separated?
-* Butt keep deployment setup as simple as posible
+* Maybe we should support more than one SUT / separate vm per SUT in order to keep classpath deps separated?
+* But let's keep deployment setup as simple as posible
 
 ### How can we expose testing in a secure way?
 * How many surface should we expose to the outer world?
 
 
 ## Decission
+...
