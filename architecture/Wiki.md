@@ -22,7 +22,7 @@ Manual test may ask some questions.
 
 ### controll flow
 
-<img src="https://github.com/DomainDrivenArchitecture/dda/raw/master/uploads/SmeagolDrivenTests.jpg" width="80%" alt="SmeagolDrivenTests">
+<img src="content/uploads/SmeagolDrivenTests.jpg" width="80%" alt="SmeagolDrivenTests">
 
 Variant1: Let the smeagol server drive the test
 
