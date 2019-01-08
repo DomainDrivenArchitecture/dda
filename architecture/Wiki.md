@@ -7,7 +7,7 @@
 
 A manual test definition
 
-![Automated test](https://github.com/DomainDrivenArchitecture/dda/raw/master/uploads/FitnesseTest.png)
+![Automated test](content/uploads/FitnesseTest.png)
 
 A automated test definition
 
@@ -26,7 +26,7 @@ Manual test may ask some questions.
 
 Variant1: Let the smeagol server drive the test
 
-<img src="https://github.com/DomainDrivenArchitecture/dda/raw/master/uploads/BrowserDrivenTests.jpg" width="80%" alt="BrowserDrivenTests">
+<img src="content/uploads/BrowserDrivenTests.jpg" width="80%" alt="BrowserDrivenTests">
 
 Variant2: Let the browser drive the test directly
 
