@@ -89,8 +89,8 @@ For defining the function under test & expected results I've no opinionated idea
 
 
 | ns/function |
-| input              | expectations                       |
-| {aero} :input |  {:default 8080} (in result) |
+| input         | expectations                |
+| {aero} :input | {:default 8080} (in result) |
 
 ```
   * pro
