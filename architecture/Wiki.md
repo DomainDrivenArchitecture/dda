@@ -23,8 +23,8 @@ Having a natural test language for expressing tests in combination with test dat
   * I've used BDD (with cucumber & integrity) heavily but all of these languages lack on modularity - it's not a programming language
   * I've never seen domain people write additional tests. So writing test in natural languege solves the wrong problem ... I think domain understandable tests is more a matter of having expressive domain language build in the system under test than in the used test language.
 
-#### fitnesse style
-separate test spec: data + function to call + fact to validate from a unittest like adapter.
+#### Fitnesse style
+Separate test data & expectations from code. The way how data & expectations are matched to the code is a kind of API.
 * pro
   * separation of test data & test code. A good combination of expressive data & expressive code.
   * good overview over test history.
@@ -36,8 +36,8 @@ separate test spec: data + function to call + fact to validate from a unittest l
   * embedding data in wiki md is not easy to handle -> maybe we separate wiki & data-storage (in a edn file?) and just visualize them together (use some kind of name conventions & include?) ?
   * fitness implements a whole test-suporting webserver - it's hard to reimplement a up to date webserver mixed with test-execution code. I do not want to enhance fitness for clojure ...
 
-#### plain old simple deftest
-Test data would be stored in smeagol, test code would reside in SUT test-section like simple unittests.
+#### Plain old simple deftest
+Like fitnesse style test data would be stored in smeagol, test code would reside in SUT test-section like simple unittests.
 * pro
   * simple to use - every clojure dev will be able to use in milliseconds ;-)
   * well shaped, would be hard to invent sth. better in terms of suites / setup / teardown ...
@@ -46,7 +46,7 @@ Test data would be stored in smeagol, test code would reside in SUT test-section
   * complex data itself needs some modularization - aero has a good shape for this demand.
   * maybe we will need some expressive validation operators beside of clojure.test/is and clojure.test/are - expectations maybe is a good choice?. That will be an optional enhancement ...
 
-### enhanced deftest
+### Enhanced deftest
 with modular data by https://github.com/juxt/aero & rich verification by https://github.com/clojure-expectations/expectations ?
 
 ```
