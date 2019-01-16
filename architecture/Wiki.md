@@ -4,6 +4,8 @@
 see [[architecture/wiki/Idea]]
 
 ## Discussion
+### Is it a good idea to separate test code & data?
+
 ### Language for describing tests
 * Gherkin
   * pro
@@ -14,6 +16,7 @@ see [[architecture/wiki/Idea]]
 * fitnesse style (separate test spec: data + function to call + fact to validate from a unittest like adapter)
   * pro
   * contra
+* plain old simple deftest
 * sth new: At my naive first idea I thought about using https://github.com/juxt/aero for data description (small & modular, u can refer defined data many times). For checking results maybe seancorfields https://github.com/clojure-expectations/expectations ?
 For defining the function under test & expected results I've no opinionated idea ... maybe a fitness-like table like
 
@@ -57,7 +60,8 @@ For defining the function under test & expected results I've no opinionated idea
 
 ### Should we support tests for more than one project?
 * Maybe we should support more than one SUT / separate vm per SUT in order to keep classpath deps separated?
-* But let's keep deployment setup as simple as posible
+  * Let's keep deployment setup as simple as posible
+* If we support more than one SUT, we should maybe support a "headless test-driver" for executing the smeagol-tests independant?
 
 ### How can we expose testing in a secure way?
 * How many surface should we expose to the outer world?
