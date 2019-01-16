@@ -22,6 +22,7 @@ Having a natural test language for expressing tests in combination with test dat
 * contra
   * I've used BDD (with cucumber & integrity) heavily but all of these languages lack on modularity - it's not a programming language
   * I've never seen domain people write additional tests. So writing test in natural languege solves the wrong problem ... I think domain understandable tests is more a matter of having expressive domain language build in the system under test than in the used test language.
+
 #### fitnesse style
 separate test spec: data + function to call + fact to validate from a unittest like adapter.
 * pro
@@ -34,6 +35,7 @@ separate test spec: data + function to call + fact to validate from a unittest l
   * tables are quite limited, maybe we find a better representation -> maps with good visualization, some kind of inspector ui?
   * embedding data in wiki md is not easy to handle -> maybe we separate wiki & data-storage (in a edn file?) and just visualize them together (use some kind of name conventions & include?) ?
   * fitness implements a whole test-suporting webserver - it's hard to reimplement a up to date webserver mixed with test-execution code. I do not want to enhance fitness for clojure ...
+
 #### plain old simple deftest
 Test data would be stored in smeagol, test code would reside in SUT test-section like simple unittests.
 * pro
@@ -43,6 +45,7 @@ Test data would be stored in smeagol, test code would reside in SUT test-section
   * deftest takes no parameters, we will not be able to inject test data.
   * complex data itself needs some modularization - aero has a good shape for this demand.
   * maybe we will need some expressive validation operators beside of clojure.test/is and clojure.test/are - expectations maybe is a good choice?. That will be an optional enhancement ...
+
 ### enhanced deftest
 with modular data by https://github.com/juxt/aero & rich verification by https://github.com/clojure-expectations/expectations ?
 
