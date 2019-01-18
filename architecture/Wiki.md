@@ -12,7 +12,7 @@ see [[architecture/wiki/Idea]]
   * we should not use xml for expressing data
   * we separate test function from testdata. In terms of test get harder to read thats an drawback. But in terms of handling large sets of test data separation will help keeping the overview
 * contra
-  .. ?  
+  * more complicated to maintain tests.  
 
 ### Language for describing tests
 #### Gherkin
