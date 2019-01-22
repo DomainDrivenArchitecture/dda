@@ -19,6 +19,8 @@ Inputs for Certs can be the letsencrypt controller pod or the static configured 
 
 ### How are secrets protected against pods ?
 
+### Which roles / actions are available on default k8s ?
+
 
 ## Decission
 ...
