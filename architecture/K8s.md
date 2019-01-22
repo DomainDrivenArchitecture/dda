@@ -20,6 +20,8 @@ Inputs for Certs can be the letsencrypt controller pod or the static configured 
 ### How are secrets protected against pods ?
 
 ### Which roles / actions are available on default k8s ?
+* see also: 
+  * https://www.cncf.io/blog/2018/08/01/demystifying-rbac-in-kubernetes/
 
 
 ## Decission
