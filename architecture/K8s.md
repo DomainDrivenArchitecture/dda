@@ -29,6 +29,7 @@
 ### How can we deactivate default access to the dashboard? 
 * Looking at: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#discovery-roles -> seems to be no discovery role on microk8s
 * "Using Skip option will make Dashboard use privileges of Service Account used by Dashboard" -> looking at restricting Dasboard Service Account?
+* Default Service Account exists for alle Namespaces and pods take it when they dont have another account -> need to restrict it 
 
 ### Is the API Server exposed to the internet in default settings? How can we deactivate that/deactivate anonymous user calls?
 
