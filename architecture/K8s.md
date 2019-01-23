@@ -6,7 +6,7 @@
 * is compatible with k8s
 * providing ingress for app to be installed (replacement of traditional reverse-proxy httpd)
 * support letsencrypt (dynamic created by https) for a defined fqdn or injected static https certs.
-* exposes dashboard with users defined
+* exposes dashboard with users defined & disabled annonymous access.
 
 ### Architecture
 <img src="content/uploads/K8s_wiring.jpg" width="80%" alt="K8s wiring">
