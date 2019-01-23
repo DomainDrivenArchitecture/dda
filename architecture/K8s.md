@@ -34,6 +34,7 @@
 * Could not find a cluster/rolebinding for the default dashboard service account -> unclear which role it even has
 * Probably just make new rolebinding? 
 * Dashboard config: https://github.com/ubuntu/microk8s/blob/master/microk8s-resources/actions/dashboard.yaml
+* Is it possible that with the configured certs, that the dashboard does not need a role?
 
 ### Is the API Server exposed to the internet in default settings? How can we deactivate that/deactivate anonymous user calls?
 
