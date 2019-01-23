@@ -34,7 +34,6 @@
 * Could not find a cluster/rolebinding for the default dashboard service account -> unclear which role it even has
 * Probably just make new rolebinding? 
 
-
 ### Is the API Server exposed to the internet in default settings? How can we deactivate that/deactivate anonymous user calls?
 
 ### How can we hand over certs ?
@@ -42,8 +41,12 @@ Inputs for Certs can be the letsencrypt controller pod or the static configured 
 
 ### How are secrets protected against pods ?
 
-### How can we prevent pods from doing kubectl/api calls? (In general)
+### How can we prevent pods from doing kubectl/api calls? (in general)
 * Every pod has a service account, give it lower role?
+
+### Is the API servers authorization mode AlwaysAllow suited for our needs?
+* https://github.com/ubuntu/microk8s/blob/master/microk8s-resources/default-args/kube-apiserver
+* Might want to change default args -> New microk8s build?
 
 ### Which roles / actions are available on default k8s ?
 * see also: 
