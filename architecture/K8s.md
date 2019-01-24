@@ -18,7 +18,7 @@
 * [Source](https://docs.bitnami.com/kubernetes/how-to/configure-rbac-in-your-kubernetes-cluster/)
 
 ### If we expose the Dashboard to the internet (which we want for control), is there more to do than just secure the login?
-* [](https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above)
+* [https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above](https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above)
 
 ### How can we inject users for dashboard?
 
