@@ -15,10 +15,10 @@
 
 ### What is the difference between roles and clusterroles?
 * "Both consist of rules. The difference between a Role and a ClusterRole is the scope: in a Role, the rules are applicable to a single namespace, whereas a ClusterRole is cluster-wide, so the rules are applicable to more than one namespace. ClusterRoles can define rules for cluster-scoped resources (such as nodes) as well. Both Roles and ClusterRoles are mapped as API Resources inside our cluster."
-* Source: https://docs.bitnami.com/kubernetes/how-to/configure-rbac-in-your-kubernetes-cluster/
+* [Source](https://docs.bitnami.com/kubernetes/how-to/configure-rbac-in-your-kubernetes-cluster/)
 
 ### If we expose the Dashboard to the internet (which we want for control), is there more to do than just secure the login?
-* https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above
+* [](https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above)
 
 ### How can we inject users for dashboard?
 
