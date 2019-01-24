@@ -52,6 +52,7 @@ Inputs for Certs can be the letsencrypt controller pod or the static configured 
 ### Is the API servers authorization mode AlwaysAllow suited for our needs?
 * https://github.com/ubuntu/microk8s/blob/master/microk8s-resources/default-args/kube-apiserver
 * Might want to change default args -> New microk8s build?
+* To activate RBAC replace "--authorization-mode=AlwaysAllow" with "--authorization-mode=RBAC" in line 5 of the file "/var/snap/microk8s/current/args/kube-apiserver"
 
 ### Which roles / actions are available on default k8s ?
 * see also: 
