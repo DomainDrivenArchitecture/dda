@@ -13,46 +13,40 @@
 
 ## Discussion
 
-### What is the difference between roles and clusterroles?
-* "Both consist of rules. The difference between a Role and a ClusterRole is the scope: in a Role, the rules are applicable to a single namespace, whereas a ClusterRole is cluster-wide, so the rules are applicable to more than one namespace. ClusterRoles can define rules for cluster-scoped resources (such as nodes) as well. Both Roles and ClusterRoles are mapped as API Resources inside our cluster."
-* [Source](https://docs.bitnami.com/kubernetes/how-to/configure-rbac-in-your-kubernetes-cluster/)
+### The default config for the microk8s is highly insecure and needs to be changed
+* Starting point is default args given to the system services: https://github.com/ubuntu/microk8s/tree/master/microk8s-resources/default-args 
+* We need to edit the respective files on the serverpath "/var/snap/microk8s/current" and restart microk8s 
+* Another Starting point is changing the authorization mode of the api server: To activate RBAC replace "--authorization-mode=AlwaysAllow" with "--authorization-mode=RBAC" in line 5 of the file "/var/snap/microk8s/current/args/kube-apiserver"
+* Default Service Account exists for alle Namespaces and pods take it when they dont have another account -> need to restrict it too 
 
-### If we expose the Dashboard to the internet (which we want for control), is there more to do than just secure the login?
+### To secure the K8S Server we need to secure all the running pods and system services 
+* https://github.com/ubuntu/microk8s
+* each pod has the rights of its associated ServiceAccount
+* to change the rights of a ServiceAccount we need to remove or add Cluster/Rolebindings: https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+* https://kubernetes.io/docs/reference/access-authn-authz/rbac/#discovery-roles -> seems to be no discovery role on microk8s
+
+#### Securing the dashboard pod 
 * [https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above](https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above)
+* Dashboard config for microk8s: https://github.com/ubuntu/microk8s/blob/master/microk8s-resources/actions/dashboard.yaml
 
-### How can we inject users for dashboard?
-
-### How can users log in to the dashboard?
+##### How can users log in to the dashboard?
 * Authorization: Bearer <token> header passed in every request to Dashboard. If present, login view will not be shown.
 * Bearer Token that can be used on Dashboard login view.
 * Username/password that can be used on Dashboard login view.
 * Kubeconfig file that can be used on Dashboard login view.
 
-### How can we deactivate default access to the dashboard? 
-* Looking at: https://kubernetes.io/docs/reference/access-authn-authz/rbac/#discovery-roles -> seems to be no discovery role on microk8s
-* "Using Skip option will make Dashboard use privileges of Service Account used by Dashboard" -> looking at restricting Dasboard Service Account?
-* Default Service Account exists for alle Namespaces and pods take it when they dont have another account -> need to restrict it too 
+##### How can we inject users for dashboard?
+* one possibility is to create a new ServiceAccount, make the appropriate RoleBinding. A Bearer token is automatically created and can be used to login
 
-### How is the role of the dashboard service account determined?
-* Could not find a cluster/rolebinding for the default dashboard service account -> unclear which role it even has
-* Probably just make new rolebinding? 
-* Dashboard config: https://github.com/ubuntu/microk8s/blob/master/microk8s-resources/actions/dashboard.yaml
-* Is it possible that with the configured certs, that the dashboard does not need a role?
-
-### Is the API Server exposed to the internet in default settings? How can we deactivate that/deactivate anonymous user calls?
+##### How can we deactivate default access to the dashboard? 
+* "Using Skip option will make Dashboard use privileges of Service Account used by Dashboard"
+* Dashboard has no RoleBinding in microk8s, because all API calls are allowed by default
+* After activating RBAC we need to make appropriate RoleBinding for the ServiceAccount -> just enough Permissions to be able to show the login screen and no more than that  
 
 ### How can we hand over certs ?
 Inputs for Certs can be the letsencrypt controller pod or the static configured certs. How the app-ingress can use such a cert?
 
 ### How are secrets protected against pods ?
-
-### How can we prevent pods from doing kubectl/api calls? (in general)
-* Every pod has a service account, give it lower role?
-
-### Is the API servers authorization mode AlwaysAllow suited for our needs?
-* https://github.com/ubuntu/microk8s/blob/master/microk8s-resources/default-args/kube-apiserver
-* Might want to change default args -> New microk8s build?
-* To activate RBAC replace "--authorization-mode=AlwaysAllow" with "--authorization-mode=RBAC" in line 5 of the file "/var/snap/microk8s/current/args/kube-apiserver"
 
 ### Which roles / actions are available on default k8s ?
 * see also: 
