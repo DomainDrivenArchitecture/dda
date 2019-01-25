@@ -5,9 +5,6 @@ The controlling application is a DomainDrivenArchitecture example application. I
 
 ## Requirements
 &[:indent-heading 2](requirements/req/R001.md)
-
-more 
-
 &[:indent-heading 2](tests/test/T001.md)
 
 more
