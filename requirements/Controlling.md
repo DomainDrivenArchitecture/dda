@@ -8,6 +8,6 @@ The controlling application is a DomainDrivenArchitecture example application. I
 
 more 
 
-&[:indent-heading 1](tests/test/T001.md)
+&[:indent-heading 2](tests/test/T001.md)
 
 more
