@@ -4,4 +4,4 @@ The controlling application is a DomainDrivenArchitecture example application. I
 ## User and Roles
 
 ## Requirements
-[[requirements/req/R001]]
+&[:indent-heading 2](requirements/req/R001.md)
