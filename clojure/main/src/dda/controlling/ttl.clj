@@ -13,4 +13,17 @@
 ; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 ; See the License for the specific language governing permissions and
 ; limitations under the License.
-(ns dda.controlling.ttl)
+(ns dda.controlling.ttl
+  (:require [clojure.spec.alpha :as s]))
+
+(s/def ::recurrance #{:monthly :yearly :one-time})
+(s/def ::name string?)
+(s/def ::amount number?)
+(s/def ::salary (s/keys :req [::recurrance ::name ::amount]))
+
+(s/def ::salaries (s/coll-of ::salary))
+
+(s/def ::debts (s/keys :req [::salaries]))
+
+(defn calculate-debts-monthly
+  [])
