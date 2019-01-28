@@ -25,5 +25,18 @@
 
 (s/def ::debts (s/keys :req [::salaries]))
 
+(s/fdef calculate-debts-monthly
+  :args (s/cat :debts ::debts)
+  :ret number?)
 (defn calculate-debts-monthly
-  [])
+  "calculate the debts monthly rate"
+  [debts]
+  (reduce
+    (fn [p salary]
+        (+ p (cond
+               (= :monthly (::recurrance salary))
+               (::amount salary)
+               (= :yearly (::recurrance salary))
+               (/ (::amount salary) 12))))
+   0
+   (::salaries debts)))

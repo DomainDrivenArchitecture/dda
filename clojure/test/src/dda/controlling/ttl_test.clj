@@ -32,9 +32,9 @@
      {:salaries [{:recurrance :monthly
                   :name "me"
                   :amount 100.00}
-                 {:recurrance :monthly
+                 {:recurrance :yearly
                   :name "myself"
-                  :amount 100.00}
+                  :amount 2400.00}
                  {:recurrance :monthly
                   :name "I"
                   :amount 100.00}]})
@@ -42,5 +42,5 @@
 (deftest server-spec
   (testing
     "test the server spec"
-    (is (= 300
+    (is (= 400
            (sut/calculate-debts-monthly debts)))))
