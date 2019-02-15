@@ -132,13 +132,46 @@ contra:
 
 Given all \*.edn data is stored inside smeagol repo, where is the code?
 
-* Tests are run inside smeagol vm by appending app source-paths to smeagol source-paths (aka code goes to data)
-	 * pro: easy, CI friendly
-	 * contra: language dependent
-	
-* App is exposing network interface to call list of functions (aka data goes to code via network)
-	 * pro: will allow to expose fns run in any language, maybe even run in aws-lambda and stuff
-	 * contra: we need to orchestrate app startup before running smeagol suite, need to do "smeagol-app-plugin" and build uberjars with different -main, security issues?
+ * INSIDE-TESTS-FULLSMEAGOL: Tests are run inside smeagol vm by appending app source-paths to smeagol source-paths (aka code goes to data)
+   * pro: 
+     * easy, CI friendly if we provide some kind of headless
+   * contra: 
+     * smeagol dependency in test project and way to launch smeagol
+     * language dependent
+     * fragile - nameclashes
+     * havy project - smeagol-presentation part is not necesary here
+     * have to implement headless for ci
+     * more posibilities for lib-version-conflicts
+     * if app requires credentials -> should be exposed to smeagol
+
+ * INSIDE-TESTS-HEADLESS: Just a small testrunner able to interact with smeagol but not intended to be exposed public. - second REPL driven by smeagol.
+   * pro
+     * no lib-version-conlicts
+     * no securtiy concerns - becaus it's from one hand.
+     * smeagol has to work on second repo for authoring tests & test data (solved already)
+   * contra
+     * remote repl in ci-system may be required
+     * provide some kind of headless driver
+     * How we will trigger test execution?
+     * How we will get results from repl? (serialize results -> text -> deserialize results in smeagol)
+
+ * REMOTE-TEST: App is exposing network interface to call list of functions (aka data goes to code via network) - speaking REST
+   * pro: 
+     * will allow to expose fns run in any language, maybe even run in aws-lambda and stuff
+     * API - better seperation of presentation & test execution
+   * contra: 
+     * we need to orchestrate app startup before running smeagol  suite, 
+     * need to do "smeagol-app-plugin" and build uberjars with different  -main,  - need some kind of server
+     * security issues
+       * users should care about side-effects
+       * smeagol users could(?) be able to "login as" (related to stored credentials)  OR always submitting whole world environment for asome case (no db connection) - (some kind of authentication federation)
+     * need for additional API with authentication & authorization
+     * inter-wiki: 
+       * Definitiion of foreign wiki-endpoint, credential-storage
+       * use protocol, 
+       * trust/authorization federation
+
+
 
 ## Decission
 ...
