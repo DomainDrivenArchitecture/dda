@@ -100,6 +100,9 @@ Given all \*.edn data is stored inside smeagol repo, where is the code?
      * How we will trigger test execution?
      * How we will get results from repl? (serialize results -> text -> deserialize results in smeagol)
 
+Maybe we can containerize inside-test-headless setups like it's done in https://blog.jupyter.org/introducing-repo2docker-61a593c0752d ?
+
+
  * REMOTE-TEST: App is exposing network interface to call list of functions (aka data goes to code via network) - speaking REST
    * pro:
      * will allow to expose fns run in any language, maybe even run in aws-lambda and stuff
