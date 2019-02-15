@@ -117,6 +117,10 @@ contra:
 
 - show only a single level at one time
 
+Some thoughts to DataFrontends:
+- why not having a rough, as compact as posible presentation of test results (OK, FAILED with smallest posible diff or EXCEPTION with smallest posible stacktrace)
+- as the tool of exploring bigdata is jupyter we should enable sth. similar for exploring test input & testresult? Offering sth. like meijure (combination of meissa is a star and clojure :) or maybe smeajure 😉
+
 ### How should we store testresults?
 * storing testresults versioned would be cool :-)
 
