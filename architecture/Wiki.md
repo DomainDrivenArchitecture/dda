@@ -84,6 +84,19 @@ with modular data by https://github.com/juxt/aero & rich verification by https:/
 * Wich nice data frontends are available (treeview / clojure.inspect* ...)
 * Should we add markdown WISYWIG also?
 
+### Data frontends
+
+#### clojure.inspector/inspect is awful
+
+ ![clojure-Inspector](content/uploads/clojure-Inspector.png)
+
+#### treeview
+
+contra:
+
+- is very usual for filesystem, but filesystem nodes (dirs and files) are homogeneous: we could have vector/list/set for values, symbol/string for keys
+- what if a key is a composite, not symbol by itself
+
 ### How should we store testresults?
 * storing testresults versioned would be cool :-)
 
