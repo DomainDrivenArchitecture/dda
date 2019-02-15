@@ -90,7 +90,7 @@ with modular data by https://github.com/juxt/aero & rich verification by https:/
 
 aka clojure.inspector/inspect-tree 
 
-![Uploaded image](content/uploads/inspect-tree.png)
+![inspect-tree](content/uploads/inspect-tree.png)
 
 contra:
 
@@ -100,7 +100,7 @@ contra:
 
 #### nested table
 
-![Uploaded image](content/uploads/nested-table-data.jpg)
+![nested table](content/uploads/nested-table-data.jpg)
 
 contra:
 
@@ -108,6 +108,14 @@ contra:
 - same issue with composite keys
 - good at scoping error by highlight the cell, still not clear at diff/ show actual value
 - not clear how to "collapse" nesting inside a cell
+
+#### REBL-style
+
+![REBL-style](content/uploads/rebl.png)
+
+contra:
+
+- show only a single level at one time
 
 ### How should we store testresults?
 * storing testresults versioned would be cool :-)
