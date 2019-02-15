@@ -86,11 +86,11 @@ with modular data by https://github.com/juxt/aero & rich verification by https:/
 
 ### Data frontends
 
-#### clojure.inspector/inspect is awful
-
- ![clojure-Inspector](content/uploads/clojure-Inspector.png)
-
 #### treeview
+
+aka clojure.inspector/inspect-tree 
+
+![Uploaded image](content/uploads/inspect-tree.png)
 
 contra:
 
