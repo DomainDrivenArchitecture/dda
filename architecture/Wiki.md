@@ -132,13 +132,13 @@ contra:
 
 Given all \*.edn data is stored inside smeagol repo, where is the code?
 
-- Tests are run inside smeagol vm by appending app source-paths to smeagol source-paths (aka code goes to data)
-	- pro: easy, CI friendly
-	- contra: language dependent
+* Tests are run inside smeagol vm by appending app source-paths to smeagol source-paths (aka code goes to data)
+	* pro: easy, CI friendly
+	* contra: language dependent
 	
-- App exposing are run inside smeagol vm (aka data goes to code via network)
-	- pro: will allow to expose fns run in any language, maybe even run in aws-lambda and stuff
-	- contra: we need to orchestrate app startup before running smeagol suite, need to do "smeagol-app-plugin" and build uberjars with different -main
+* App is exposing network interface to call list of functions (aka data goes to code via network)
+	* pro: will allow to expose fns run in any language, maybe even run in aws-lambda and stuff
+	* contra: we need to orchestrate app startup before running smeagol suite, need to do "smeagol-app-plugin" and build uberjars with different -main, security issues?
 
 ## Decission
 ...
