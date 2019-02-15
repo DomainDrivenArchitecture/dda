@@ -96,6 +96,18 @@ contra:
 
 - is very usual for filesystem, but filesystem nodes (dirs and files) are homogeneous: we could have vector/list/set for values, symbol/string for keys
 - what if a key is a composite, not symbol by itself
+- not clear how to show test failure (diff, not matching parts)
+
+#### nested table
+
+![Uploaded image](content/uploads/nested-table-data.jpg)
+
+contra:
+
+- big gaps to the left at the bottom
+- same issue with composite keys
+- good at scoping error by highlight the cell, still not clear at diff/ show actual value
+- not clear how to "collapse" nesting inside a cell
 
 ### How should we store testresults?
 * storing testresults versioned would be cool :-)
