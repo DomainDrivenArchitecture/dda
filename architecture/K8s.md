@@ -13,6 +13,9 @@
 
 ## Discussion
 
+### Applying Resource
+Application of generic resource ([Source](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)): `kubectl create -f (resource).yml`
+
 ### Securing the kube-API Server 
 1. Change Authorization Mode from AlwaysAllow to AlwaysAllow,AlwaysDeny,ABAC,Webhook,RBAC,Node [Source](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)
 2. For Example: To activate RBAC replace "--authorization-mode=AlwaysAllow" with "--authorization-mode=RBAC" in line 5 of the file "/var/snap/microk8s/current/args/kube-apiserver"
@@ -20,10 +23,14 @@
 4. ...
 
 ### Securing the Dashboard
-1. Assuming RBAC: Create ServiceAccount for Dashboard POD with just enough rights for the Dashboard to start but not see any data
+1. Assuming RBAC: Create ServiceAccount for Dashboard POD with just enough rights for the Dashboard to start (but not see any data)
 2. Dashboard.json apply Rolebinding
 3. Create (Service)Account for each user that needs access and use its Bearer token for accessing the Dashboard
 4. ...
+
+Open Question: Is it even possible to make a Role that allows the Dashboard not to see any data but still run? 
+
+Alternative Security Approach ([Source](https://blog.heptio.com/on-securing-the-kubernetes-dashboard-16b09b1b7aca)): Not expose the Dashboard to the public, because maybe its not possible to do it without exposing any data (see Open Question) and this will shield us from Dashboard/Config Bugs. In the article he does this with a kubectl proxy. 
 
 ### The default config for the microk8s is highly insecure and needs to be changed
 * Starting point is default args given to the system services: https://github.com/ubuntu/microk8s/tree/master/microk8s-resources/default-args 
