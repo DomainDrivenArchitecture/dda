@@ -18,7 +18,6 @@ Application of generic resource ([Source](https://kubernetes.io/docs/reference/a
 
 It might be better to fork the SNAP and apply the config directly at the start than use this approach. 
 
-
 #### Empty Role YAML
 ```
 kind: Role
@@ -45,15 +44,48 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
+### Securing microk8s
+To secure microk8s we need to secure all its parts and to do that we need to understand and edit the standard config. This is critical as the standard config is highly insecure from what we understood so far. 
+
+Generally it would be a good idea to study the [repo](https://github.com/ubuntu/microk8s). 
+
+#### Default Args
+Starting point are [the default args](https://github.com/ubuntu/microk8s/tree/master/microk8s-resources/default-args) for each of the used pods. 
+
+If we want to edit it live and not in the SNAP itself, we can edit the respective files on the serverpath "/var/snap/microk8s/current" and then restart microk8s. 
+
+#### Default NS
+For every Namespace there exists are Default User, which is taken by a POD if it does not have another one. So this needs to be restricted for the Namespaces we want to use.
+
+#### ServiceAccounts
+Each pod has the rights of its associated ServiceAccount.
+If we are using RBAC we can restrict the ServiceAccount by creating a [Cluster/Rolebinding](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
+
+#### DiscoveryRoles
+There exist an option for unauthorized and unauthenticated access to the API with so-called [Discovery Roles](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#discovery-roles) (if we are using RBAC), this should be restricted.
+
 ### Securing the kube-API Server 
+
+Standard Authorization Mode is AlwaysAllow. This obviously needs to be changed. 
+
 1. Change Authorization Mode from AlwaysAllow to AlwaysAllow,AlwaysDeny,ABAC,Webhook,RBAC,Node [Source](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)
 2. For Example: To activate RBAC replace "--authorization-mode=AlwaysAllow" with "--authorization-mode=RBAC" in line 5 of the file "/var/snap/microk8s/current/args/kube-apiserver"
 3. Restart microk8s
 4. ...
 
 ### Securing the Dashboard
-Currently microk8s uses the Dashboard Version 1.8.x that does not support the disabeling of the Skip Button (which currently is the main threat). The newer Dashboard Versions disable the Skip Button by default ([Source](https://github.com/kubernetes/dashboard/issues/2672))
 
+In general we have a quite different vision for our Dashboard Security than is expected in [the standard manual](https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above) if we want to expose it to the public/make it easy to access through the Browser.
+
+#### Version 1: Securely Exposing the Dashboard to the Public 
+The Skip Button makes the Dashboard use its ServiceAccount to log in. This means that the person who skipped login can access everything that the Dashboard-Account can access.
+
+Currently microk8s uses the Dashboard Version 1.8.x that does not support the disabling of the Skip Button (which currently is the main threat). The newer Dashboard Versions disable the Skip Button by default ([Source](https://github.com/kubernetes/dashboard/issues/2672))
+If we want to repackage the SNAP anyways we could just replace the used version [in the deployment config of the Dashboard.](https://github.com/ubuntu/microk8s/blob/master/microk8s-resources/actions/dashboard.yaml)
+
+The current idea is that we could maybe restrict the Dashboard-ServiceAccount so much that it would be useless to Skip as it would not yield any information. However, there seems to be an issue with restricting it too much and the Dashboard not showing at all because of that. 
+
+Current Config Steps would be:
 1. Assuming RBAC: Create ServiceAccount for Dashboard POD with just enough rights for the Dashboard to start (but not see any data)
 2. Dashboard.json apply Rolebinding
 3. Create (Service)Account for each user that needs access and use its Bearer token for accessing the Dashboard
@@ -62,22 +94,12 @@ Currently microk8s uses the Dashboard Version 1.8.x that does not support the di
 Open Question: Is it even possible to make a Role that allows the Dashboard not to see any data but still run?
 Next step: Make empty Role and see if the Dashboard can be accessed at all
 
-Alternative Security Approach ([Source](https://blog.heptio.com/on-securing-the-kubernetes-dashboard-16b09b1b7aca)): Not expose the Dashboard to the public, because maybe its not possible to do it without exposing any data (see Open Question) and this will shield us from Dashboard/Config Bugs. In the article he does this with a kubectl proxy which requires local setup of kubectl and authorization . 
+#### Version 2: Not Exposing the Dashboard
 
-### The default config for the microk8s is highly insecure and needs to be changed
-* Starting point is default args given to the system services: https://github.com/ubuntu/microk8s/tree/master/microk8s-resources/default-args 
-* We need to edit the respective files on the serverpath "/var/snap/microk8s/current" and restart microk8s 
-* Default Service Account exists for alle Namespaces and pods take it when they dont have another account -> need to restrict it too 
+Alternative Security Approach ([Source](https://blog.heptio.com/on-securing-the-kubernetes-dashboard-16b09b1b7aca)): 
+Not expose the Dashboard to the public, because maybe its not possible to do it without exposing any data (see Open Question) and this would additionally shield us from Dashboard/Config Bugs. In the article he does this with a kubectl proxy which requires local setup of kubectl and authorization.
+This might be the preferred version but also not user-friendly, if we want to allow access to our Dashboard to a third party.
 
-### To secure the K8S Server we need to secure all the running pods and system services 
-* https://github.com/ubuntu/microk8s
-* each pod has the rights of its associated ServiceAccount
-* to change the rights of a ServiceAccount we need to remove or add Cluster/Rolebindings: https://kubernetes.io/docs/reference/access-authn-authz/rbac/
-* https://kubernetes.io/docs/reference/access-authn-authz/rbac/#discovery-roles -> seems to be no discovery role on microk8s
-
-#### Securing the dashboard pod 
-* [https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above](https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above)
-* Dashboard config for microk8s: https://github.com/ubuntu/microk8s/blob/master/microk8s-resources/actions/dashboard.yaml
 
 ##### How can users log in to the dashboard?
 * Authorization: Bearer <token> header passed in every request to Dashboard. If present, login view will not be shown.
@@ -86,12 +108,7 @@ Alternative Security Approach ([Source](https://blog.heptio.com/on-securing-the-
 * Kubeconfig file that can be used on Dashboard login view.
 
 ##### How can we inject users for dashboard?
-* one possibility is to create a new ServiceAccount, make the appropriate RoleBinding. A Bearer token is automatically created and can be used to login
-
-##### How can we deactivate default access to the dashboard? 
-* "Using Skip option will make Dashboard use privileges of Service Account used by Dashboard"
-* Dashboard has no RoleBinding in microk8s, because all API calls are allowed by default
-* After activating RBAC we need to make appropriate RoleBinding for the ServiceAccount -> just enough Permissions to be able to show the login screen and no more than that  
+* one possibility is to create a new ServiceAccount, make the appropriate RoleBinding. A Bearer token is automatically created and can be used to login.
 
 ### How can we hand over certs ?
 Inputs for Certs can be the letsencrypt controller pod or the static configured certs. How the app-ingress can use such a cert?
