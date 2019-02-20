@@ -90,6 +90,12 @@ In general we have a quite different vision for our Dashboard Security than is e
 #### How can we inject users for dashboard?
 * one possibility is to create a new ServiceAccount, make the appropriate RoleBinding. A Bearer token is automatically created and can be used to login.
 
+#### How can users log in to the dashboard?
+* Authorization: Bearer token header passed in every request to Dashboard. If present, login view will not be shown.
+* Bearer Token that can be used on Dashboard login view.
+* Username/password that can be used on Dashboard login view.
+* Kubeconfig file that can be used on Dashboard login view
+
 #### Version 1: Securely Exposing the Dashboard to the Public 
 The Skip Button makes the Dashboard use its ServiceAccount to log in. This means that the person who skipped login can access everything that the Dashboard-Account can access.
 
@@ -111,12 +117,6 @@ Next step: Make empty Role and see if the Dashboard can be accessed at all
 Alternative Security Approach ([Source](https://blog.heptio.com/on-securing-the-kubernetes-dashboard-16b09b1b7aca)): 
 Not expose the Dashboard to the public, because maybe its not possible to do it without exposing any data (see Open Question) and this would additionally shield us from Dashboard/Config Bugs. In the article he does this with a kubectl proxy which requires local setup of kubectl and authorization.
 This might be the preferred version but also not user-friendly, if we want to allow access to our Dashboard to a third party.
-
-#### How can users log in to the dashboard?
-* Authorization: Bearer <token> header passed in every request to Dashboard. If present, login view will not be shown.
-* Bearer Token that can be used on Dashboard login view.
-* Username/password that can be used on Dashboard login view.
-* Kubeconfig file that can be used on Dashboard login view.
 
 ## Decision
 ...
