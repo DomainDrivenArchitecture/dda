@@ -15,15 +15,15 @@
 
 ### Securing the kube-API Server 
 1. Change Authorization Mode from AlwaysAllow to AlwaysAllow,AlwaysDeny,ABAC,Webhook,RBAC,Node [Source](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)
-1.1. For Example: To activate RBAC replace "--authorization-mode=AlwaysAllow" with "--authorization-mode=RBAC" in line 5 of the file "/var/snap/microk8s/current/args/kube-apiserver"
-1.2. Restart microk8s
-2. ...
+2. For Example: To activate RBAC replace "--authorization-mode=AlwaysAllow" with "--authorization-mode=RBAC" in line 5 of the file "/var/snap/microk8s/current/args/kube-apiserver"
+3. Restart microk8s
+4. ...
 
 ### Securing the Dashboard
 1. Assuming RBAC: Create ServiceAccount for Dashboard POD with just enough rights for the Dashboard to start but not see any data
-1.1. Dashboard.json apply Rolebinding
-2. Create (Service)Account for each user that needs access and use its Bearer token for accessing the Dashboard
-3. ...
+2. Dashboard.json apply Rolebinding
+3. Create (Service)Account for each user that needs access and use its Bearer token for accessing the Dashboard
+4. ...
 
 ### The default config for the microk8s is highly insecure and needs to be changed
 * Starting point is default args given to the system services: https://github.com/ubuntu/microk8s/tree/master/microk8s-resources/default-args 
