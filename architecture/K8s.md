@@ -16,6 +16,35 @@
 ### Applying Resource
 Application of generic resource ([Source](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)): `kubectl create -f (resource).yml`
 
+It might be better to fork the SNAP and apply the config directly at the start than use this approach. 
+
+
+#### Empty Role YAML
+```
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: default
+	name: test
+```
+
+#### Empty Rolebinding YAML
+```
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: test
+  namespace: kube-system
+subjects:
+- kind: User
+  name: 
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: test
+  apiGroup: rbac.authorization.k8s.io
+```
+
 ### Securing the kube-API Server 
 1. Change Authorization Mode from AlwaysAllow to AlwaysAllow,AlwaysDeny,ABAC,Webhook,RBAC,Node [Source](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)
 2. For Example: To activate RBAC replace "--authorization-mode=AlwaysAllow" with "--authorization-mode=RBAC" in line 5 of the file "/var/snap/microk8s/current/args/kube-apiserver"
@@ -28,9 +57,10 @@ Application of generic resource ([Source](https://kubernetes.io/docs/reference/a
 3. Create (Service)Account for each user that needs access and use its Bearer token for accessing the Dashboard
 4. ...
 
-Open Question: Is it even possible to make a Role that allows the Dashboard not to see any data but still run? 
+Open Question: Is it even possible to make a Role that allows the Dashboard not to see any data but still run?
+Next step: Make empty Role and see if the Dashboard can be accessed at all
 
-Alternative Security Approach ([Source](https://blog.heptio.com/on-securing-the-kubernetes-dashboard-16b09b1b7aca)): Not expose the Dashboard to the public, because maybe its not possible to do it without exposing any data (see Open Question) and this will shield us from Dashboard/Config Bugs. In the article he does this with a kubectl proxy. 
+Alternative Security Approach ([Source](https://blog.heptio.com/on-securing-the-kubernetes-dashboard-16b09b1b7aca)): Not expose the Dashboard to the public, because maybe its not possible to do it without exposing any data (see Open Question) and this will shield us from Dashboard/Config Bugs. In the article he does this with a kubectl proxy which requires local setup of kubectl and authorization . 
 
 ### The default config for the microk8s is highly insecure and needs to be changed
 * Starting point is default args given to the system services: https://github.com/ubuntu/microk8s/tree/master/microk8s-resources/default-args 
