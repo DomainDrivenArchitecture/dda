@@ -13,6 +13,17 @@
 
 ## Discussion
 
+### How can we hand over certs ?
+Inputs for Certs can be the letsencrypt controller pod or the static configured certs. How the app-ingress can use such a cert?
+
+### How are secrets protected against pods ?
+
+### Which roles / actions are available on default k8s ?
+* see also: 
+  * [RBAC explained](https://www.cncf.io/blog/2018/08/01/demystifying-rbac-in-kubernetes/)
+  * [Pod Security Policies](https://medium.com/coryodaniel/kubernetes-assigning-pod-security-policies-with-rbac-2ad2e847c754)
+
+
 ### Applying Resource
 Application of generic resource ([Source](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)): `kubectl create -f (resource).yml`
 
@@ -74,8 +85,10 @@ Standard Authorization Mode is AlwaysAllow. This obviously needs to be changed.
 4. ...
 
 ### Securing the Dashboard
-
 In general we have a quite different vision for our Dashboard Security than is expected in [the standard manual](https://github.com/kubernetes/dashboard/wiki/Accessing-Dashboard---1.7.X-and-above) if we want to expose it to the public/make it easy to access through the Browser.
+
+#### How can we inject users for dashboard?
+* one possibility is to create a new ServiceAccount, make the appropriate RoleBinding. A Bearer token is automatically created and can be used to login.
 
 #### Version 1: Securely Exposing the Dashboard to the Public 
 The Skip Button makes the Dashboard use its ServiceAccount to log in. This means that the person who skipped login can access everything that the Dashboard-Account can access.
@@ -95,31 +108,15 @@ Open Question: Is it even possible to make a Role that allows the Dashboard not 
 Next step: Make empty Role and see if the Dashboard can be accessed at all
 
 #### Version 2: Not Exposing the Dashboard
-
 Alternative Security Approach ([Source](https://blog.heptio.com/on-securing-the-kubernetes-dashboard-16b09b1b7aca)): 
 Not expose the Dashboard to the public, because maybe its not possible to do it without exposing any data (see Open Question) and this would additionally shield us from Dashboard/Config Bugs. In the article he does this with a kubectl proxy which requires local setup of kubectl and authorization.
 This might be the preferred version but also not user-friendly, if we want to allow access to our Dashboard to a third party.
 
-
-##### How can users log in to the dashboard?
+#### How can users log in to the dashboard?
 * Authorization: Bearer <token> header passed in every request to Dashboard. If present, login view will not be shown.
 * Bearer Token that can be used on Dashboard login view.
 * Username/password that can be used on Dashboard login view.
 * Kubeconfig file that can be used on Dashboard login view.
-
-##### How can we inject users for dashboard?
-* one possibility is to create a new ServiceAccount, make the appropriate RoleBinding. A Bearer token is automatically created and can be used to login.
-
-### How can we hand over certs ?
-Inputs for Certs can be the letsencrypt controller pod or the static configured certs. How the app-ingress can use such a cert?
-
-### How are secrets protected against pods ?
-
-### Which roles / actions are available on default k8s ?
-* see also: 
-  * [RBAC explained](https://www.cncf.io/blog/2018/08/01/demystifying-rbac-in-kubernetes/)
-  * [Pod Security Policies](https://medium.com/coryodaniel/kubernetes-assigning-pod-security-policies-with-rbac-2ad2e847c754)
-
 
 ## Decision
 ...
