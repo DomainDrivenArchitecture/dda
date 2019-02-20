@@ -13,10 +13,21 @@
 
 ## Discussion
 
+### Securing the kube-API Server 
+\1. Change Authorization Mode from AlwaysAllow to AlwaysAllow,AlwaysDeny,ABAC,Webhook,RBAC,Node [Source](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/)
+1.1 For Example: To activate RBAC replace "--authorization-mode=AlwaysAllow" with "--authorization-mode=RBAC" in line 5 of the file "/var/snap/microk8s/current/args/kube-apiserver"
+1.2 Restart microk8s
+2. ...
+
+### Securing the Dashboard
+1. Assuming RBAC: Create ServiceAccount for Dashboard POD with just enough rights for the Dashboard to start but not see any data
+1.1 Dashboard.json apply Rolebinding
+2. Create (Service)Account for each user that needs access and use its Bearer token for accessing the Dashboard
+3. ...
+
 ### The default config for the microk8s is highly insecure and needs to be changed
 * Starting point is default args given to the system services: https://github.com/ubuntu/microk8s/tree/master/microk8s-resources/default-args 
 * We need to edit the respective files on the serverpath "/var/snap/microk8s/current" and restart microk8s 
-* Another Starting point is changing the authorization mode of the api server: To activate RBAC replace "--authorization-mode=AlwaysAllow" with "--authorization-mode=RBAC" in line 5 of the file "/var/snap/microk8s/current/args/kube-apiserver"
 * Default Service Account exists for alle Namespaces and pods take it when they dont have another account -> need to restrict it too 
 
 ### To secure the K8S Server we need to secure all the running pods and system services 
@@ -54,5 +65,5 @@ Inputs for Certs can be the letsencrypt controller pod or the static configured 
   * [Pod Security Policies](https://medium.com/coryodaniel/kubernetes-assigning-pod-security-policies-with-rbac-2ad2e847c754)
 
 
-## Decission
+## Decision
 ...
