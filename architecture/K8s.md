@@ -52,6 +52,8 @@ roleRef:
 4. ...
 
 ### Securing the Dashboard
+Currently microk8s uses the Dashboard Version 1.8.x that does not support the disabeling of the Skip Button (which currently is the main threat). The newer Dashboard Versions disable the Skip Button by default ([Source](https://github.com/kubernetes/dashboard/issues/2672))
+
 1. Assuming RBAC: Create ServiceAccount for Dashboard POD with just enough rights for the Dashboard to start (but not see any data)
 2. Dashboard.json apply Rolebinding
 3. Create (Service)Account for each user that needs access and use its Bearer token for accessing the Dashboard
