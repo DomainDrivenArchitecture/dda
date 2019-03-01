@@ -73,6 +73,12 @@ contra:
   * writing code in notebooks is hard
   * CopyPast Outputs is hard
 
+As result, 
+* why not include code in same way as we include input data?
+* maybe include only some lines of a namespace?
+* have a headless execution mode for notebook code?
+* but show code results in markdown!
+* execute loads & executes the whole namespace in repl ...
 
 ### How should we store testresults?
 * storing testresults versioned would be cool :-)
