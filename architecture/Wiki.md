@@ -58,9 +58,21 @@ contra:
 
 - show only a single level at one time
 
-Some thoughts to DataFrontends:
-- why not having a rough, as compact as posible presentation of test results (OK, FAILED with smallest posible diff or EXCEPTION with smallest posible stacktrace)
-- as the tool of exploring bigdata is jupyter we should enable sth. similar for exploring test input & testresult? Offering sth. like meijure (combination of meissa is a star and clojure :) or maybe smeajure 😉
+#### jupyter notebook style
+* why not having a rough, as compact as posible presentation of test results (OK, FAILED with smallest posible diff or EXCEPTION with smallest posible stacktrace)
+* as the tool of exploring bigdata is jupyter we should enable sth. similar for exploring test input & testresult? Offering sth. like meijure (combination of meissa is a star and clojure :) or maybe smeajure 😉
+
+* pro
+  * be very expresive in showing relevant parts of input / output / test-result
+  * mixing doc & data-visualization is in general cool for analyzing large data chunks
+* contra (seen at https://docs.google.com/presentation/d/1n2RlMdmv1p25Xy5thJUhkKGvjtV-dkAIsUXP-AL4ffI/edit#slide=id.g3cb1319227_1_33)
+  * in notebooks is much hidden state
+  * out of order excecution is hard to understand
+  * no modularity support / importing notebooks is a realy bad idea
+  * notebooks can not be tested
+  * writing code in notebooks is hard
+  * CopyPast Outputs is hard
+
 
 ### How should we store testresults?
 * storing testresults versioned would be cool :-)
