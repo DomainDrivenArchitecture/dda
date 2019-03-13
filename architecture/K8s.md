@@ -119,4 +119,7 @@ Not expose the Dashboard to the public, because maybe its not possible to do it 
 This might be the preferred version but also not user-friendly, if we want to allow access to our Dashboard to a third party.
 
 ## Decision
-...
+* Accessing Dashboard only via Proxy and restricting it to view only
+* Activating RBAC 
+* Exposing only the specific pod (e.g. Nexus) and securing the POD itself and its ServiceAccount
+* Researching more security issues of microk8s
