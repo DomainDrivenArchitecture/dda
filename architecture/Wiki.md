@@ -62,6 +62,8 @@ contra:
 * why not having a rough, as compact as posible presentation of test results (OK, FAILED with smallest posible diff or EXCEPTION with smallest posible stacktrace)
 * as the tool of exploring bigdata is jupyter we should enable sth. similar for exploring test input & testresult? Offering sth. like meijure (combination of meissa is a star and clojure :) or maybe smeajure 😉
 
+See also JavaScript Notebook: https://www.heise.de/developer/meldung/Data-Science-Mozilla-bringt-ein-webbasiertes-Tool-zur-Datenanalyse-4335254.html
+
 * pro
   * be very expresive in showing relevant parts of input / output / test-result
   * mixing doc & data-visualization is in general cool for analyzing large data chunks
