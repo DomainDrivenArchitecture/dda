@@ -6,17 +6,6 @@ see [[architecture/wiki/Idea]]
 ## Discussion
 find finished disccusssion here: [[architecture/wiki/Discussion]]
 
-### How should we scope tests?
-* setup / teardown on level of one test
-* setup / teardown on level of a testsuite
-
-### Who will drive the tests?
-* Frontend / backend?
-* Use Rest to drive the tests ?
-* trigger will be
-  * a code change
-  * button in wiki
-
 ### How will we represent data to the user? How to store data?
 * Should we use the old tabular format from fitnesse? Should we use edn and nested maps?
   * We've many [unit-test having large maps to compare](https://github.com/DomainDrivenArchitecture/dda-git-crate/blob/master/test/src/dda/pallet/dda_git_crate/domain_test.clj)
@@ -82,65 +71,21 @@ As result,
 * but show code results in markdown!
 * execute loads & executes the whole namespace in repl ...
 
-### How should we store testresults?
-* storing testresults versioned would be cool :-)
-
 ### Should we support tests for more than one project?
 * Maybe we should support more than one SUT / separate vm per SUT in order to keep classpath deps separated?
   * Let's keep deployment setup as simple as posible
 * If we support more than one SUT, we should maybe support a "headless test-driver" for executing the smeagol-tests independant?
 
-### How can we expose testing in a secure way?
-* How many surface should we expose to the outer world?
-
-### Execution exposure
-
-Given all \*.edn data is stored inside smeagol repo, where is the code?
-
- * INSIDE-TESTS-FULLSMEAGOL: Tests are run inside smeagol vm by appending app source-paths to smeagol source-paths (aka code goes to data)
-   * pro:
-     * easy, CI friendly if we provide some kind of headless
-   * contra:
-     * smeagol dependency in test project and way to launch smeagol
-     * language dependent
-     * fragile - nameclashes
-     * havy project - smeagol-presentation part is not necesary here
-     * have to implement headless for ci
-     * more posibilities for lib-version-conflicts
-     * if app requires credentials -> should be exposed to smeagol
-
- * INSIDE-TESTS-HEADLESS: Just a small testrunner able to interact with smeagol but not intended to be exposed public. - second REPL driven by smeagol.
-   * pro
-     * no lib-version-conlicts
-     * no securtiy concerns - becaus it's from one hand.
-     * smeagol has to work on second repo for authoring tests & test data (solved already)
-   * contra
-     * remote repl in ci-system may be required
-     * provide some kind of headless driver
-     * How we will trigger test execution?
-     * How we will get results from repl? (serialize results -> text -> deserialize results in smeagol)
-
-Maybe we can containerize inside-test-headless setups like it's done in https://blog.jupyter.org/introducing-repo2docker-61a593c0752d ?
-
-
- * REMOTE-TEST: App is exposing network interface to call list of functions (aka data goes to code via network) - speaking REST
-   * pro:
-     * will allow to expose fns run in any language, maybe even run in aws-lambda and stuff
-     * API - better seperation of presentation & test execution
-   * contra:
-     * we need to orchestrate app startup before running smeagol  suite,
-     * need to do "smeagol-app-plugin" and build uberjars with different  -main,  - need some kind of server
-     * security issues
-       * users should care about side-effects
-       * smeagol users could(?) be able to "login as" (related to stored credentials)  OR always submitting whole world environment for asome case (no db connection) - (some kind of authentication federation)
-     * need for additional API with authentication & authorization
-     * inter-wiki:
-       * Definitiion of foreign wiki-endpoint, credential-storage
-       * use protocol,
-       * trust/authorization federation
-
-
 
 ## Decission
-1. Is it a good idea to separate test code & data? => yes. We will not write test code in markdown / smeagol istself.
-2. Language for describing tests => we will use Enhanced deftest.
+1. Is it a good idea to separate test code & data? 
+	1. => yes. We will not write test code in markdown / smeagol istself.
+	2. More details in [[architecture/wiki/Discussion]]
+	3. Realization in [data-test](https://github.com/DomainDrivenArchitecture/data-test)
+2. Language for describing tests 
+ 1. => we will use Enhanced deftest.
+ 2. More details in [[architecture/wiki/Discussion]]
+ 3. Realization in [data-test](https://github.com/DomainDrivenArchitecture/data-test)
+3. How many surface should we expose to the outer world?
+	1. => we will use **SIDE-TESTS-HEADLESS**Just a small testrunner able to interact with smeagol but not intended to be exposed public. - second REPL driven by smeagol.
+	2. More details in [[architecture/wiki/Discussion]]
