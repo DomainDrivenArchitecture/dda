@@ -76,6 +76,9 @@ As result,
   * Let's keep deployment setup as simple as posible
 * If we support more than one SUT, we should maybe support a "headless test-driver" for executing the smeagol-tests independant?
 
+### How should we structure test-execution & wiki integration?
+ ![Uploaded image](content/uploads/execute-test-in-sut.png)
+
 
 ## Decission
 1. Is it a good idea to separate test code & data? 
